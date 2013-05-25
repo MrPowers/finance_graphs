@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  database: rails_app_development
+  encoding: unicode
+  port: <%= ENV["BOXEN_POSTGRESQL_PORT"] || 5432 %>
+  host: localhost
+
+test:
+  adapter: postgresql
+  database: rails_app_test
+  encoding: unicode
+  port: <%= ENV["BOXEN_POSTGRESQL_PORT"] || 5432 %>
+  host: localhost

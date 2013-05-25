@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  year_month: MyString
+  sp_index: 1.5
+  dividends: 1.5
+  earnings: 1.5
+  cpi: 1.5
+  long_interest_rate: 1.5
+  date_fraction: 2013-05-24
+  real_price: 1.5
+  real_dividends: 1.5
+  real_earnings: 1.5
+  cape: 1.5
+
+two:
+  year_month: MyString
+  sp_index: 1.5
+  dividends: 1.5
+  earnings: 1.5
+  cpi: 1.5
+  long_interest_rate: 1.5
+  date_fraction: 2013-05-24
+  real_price: 1.5
+  real_dividends: 1.5
+  real_earnings: 1.5
+  cape: 1.5
