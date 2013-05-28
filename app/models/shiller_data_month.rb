@@ -52,7 +52,7 @@ class ShillerDataMonth < ActiveRecord::Base
   def self.cape_data_array
     result = []
     ShillerDataMonth.where("cape IS NOT NULL").order(:id).each do |sd|
-      result << [sd.formatted_time, sd.cape]
+      result << [sd.formatted_time, sd.cape.round(2)]
     end
     result
   end
