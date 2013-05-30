@@ -1,5 +1,4 @@
 namespace :populate_fields do
-
   desc "Populates the real earnings field based on nominal earnings"
   task real_earnings: :environment do
     shiller_data_months = ShillerDataMonth.where("earnings IS NOT NULL")
