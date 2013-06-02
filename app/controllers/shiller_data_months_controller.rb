@@ -3,7 +3,14 @@ class ShillerDataMonthsController < ApplicationController
     @result = ShillerDataMonth.cape_data_array
     respond_to do |format|
       format.html
-      format.json { render json: "callback(#{@result});"}
+    end
+  end
+
+  def interest_rates_dividends
+    @interest_rates_data = ShillerDataMonth.interest_rates_data_array
+    @dividend_yield_data = ShillerDataMonth.dividend_yield_data_array
+    respond_to do |format|
+      format.html
     end
   end
 end

@@ -61,4 +61,24 @@ class ShillerDataMonth < ActiveRecord::Base
     Time.new(current_year, current_month).to_i * 1000
   end
 
+  def self.interest_rates_data_array
+    interest_rates_data = []
+    ShillerDataMonth.where("long_interest_rate IS NOT NULL").order(:id).each do |sd|
+      interest_rates_data << [sd.formatted_time, sd.long_interest_rate.round(2)]
+    end
+    interest_rates_data
+  end
+
+  def self.dividend_yield_data_array
+    dividend_yield_data = []
+    ShillerDataMonth.where("dividends IS NOT NULL AND sp_index IS NOT NULL").order(:id).each do |sd|
+      dividend_yield_data << [sd.formatted_time, sd.dividend_yield.round(2)]
+    end
+    dividend_yield_data
+  end
+
+  def dividend_yield
+    self.dividends / self.sp_index * 100
+  end
+
 end
