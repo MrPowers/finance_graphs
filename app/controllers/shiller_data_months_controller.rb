@@ -3,6 +3,7 @@ class ShillerDataMonthsController < ApplicationController
     @result = ShillerDataMonth.cape_data_array
     respond_to do |format|
       format.html
+      format.js
     end
   end
 

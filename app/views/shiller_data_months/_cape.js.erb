@@ -1,0 +1,8 @@
+$(function() {
+  var cape_data = $('#cape_data').data('result');
+  cape_data = [{
+    name : "CAPE",
+    data : cape_data
+  }]
+  ShillerDataMonth.create_chart(cape_data, "CAPE History of S&P 500 Index");
+});

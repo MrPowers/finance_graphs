@@ -1,0 +1,13 @@
+$(function() {
+  var interest_rates_data = $('#interest_rates_data').data('interest-rates-data');
+  var dividend_yield_data = $('#dividend_yield_data').data('dividend-yield-data');
+  var data_series =
+    [{
+      name : "Long Term Interest Rates",
+      data : interest_rates_data
+    },{
+      name : "Dividend Yields",
+      data : dividend_yield_data
+    }];
+  ShillerDataMonth.create_chart(data_series, "Long Term Interest Rates and Dividend Yields");
+});

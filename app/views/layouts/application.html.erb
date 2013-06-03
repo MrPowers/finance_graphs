@@ -6,6 +6,7 @@
   <%= javascript_include_tag "application" %>
   <script src="http://code.highcharts.com/stock/highstock.js"></script>
   <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+  <%= yield :head %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -33,11 +34,6 @@
     <%= yield %>
   </div>
 
-  <div class="container">
-    <div class="hero-unit">
-      <p>The cyclically adjusted price to earnings ratio (CAPE) is the S&P 500 index divided by 10-years of inflation-adjusted ("real") annual earnings.  The CAPE gives a more accurate overview of the valuation because it smooths earnings, which tend to be volatile, over the business cycle.</p>
-    </div>
-  </div>
 
 
 </body>
