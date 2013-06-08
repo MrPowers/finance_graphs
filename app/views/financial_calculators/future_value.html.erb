@@ -1,0 +1,57 @@
+<form class="form-horizontal span6 offset3">
+
+  <div class="control-group">
+    <label class="control-label" for="current_retirement_money">Current Retirement Money</label>
+    <div class="controls">
+      <input type="text" id="current_retirement_money" placeholder="90,000">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="current_salary">Current Salary</label>
+    <div class="controls">
+      <input type="text" id="current_salary" placeholder="50,000">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="annual_salary_increases">Annual Salary Increases</label>
+    <div class="controls">
+      <input type="text" id="annual_salary_increases" placeholder="3.0%">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="percent_of_salary_diverted_to_retirement">Percent of Salary Saved</label>
+    <div class="controls">
+      <input type="text" id="percent_of_salary_diverted_to_retirement" placeholder="10.0%">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="annual_return">Annual Real Rate of Return for Retirement Investments</label>
+    <div class="controls">
+      <input type="text" id="annual_return" placeholder="5.0%">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="time">Number of Years Until Retirement</label>
+    <div class="controls">
+      <input type="text" id="time" placeholder="30">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary">Calculate Future Value of Portfolio</button>
+    </div>
+  </div>
+
+</form>
+
+<% content_for :head do %>
+  <script type="text/javascript">
+    <%= render partial: "financial_calculators/retirement_calculator.js" %>
+  </script>
+<% end %>
