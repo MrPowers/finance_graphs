@@ -1,4 +1,4 @@
-<form class="form-horizontal span6 offset3">
+<form class="form-horizontal span5">
 
   <div class="control-group">
     <label class="control-label" for="current_retirement_money">Current Retirement Money</label>
@@ -44,11 +44,14 @@
 
   <div class="control-group">
     <div class="controls">
-      <button type="submit" class="btn btn-primary">Calculate Future Value of Portfolio</button>
+      <button type="button" class="btn btn-primary">Calculate Future Value of Portfolio</button>
     </div>
   </div>
 
 </form>
+
+<div id="result_summary">
+</div>
 
 <% content_for :head do %>
   <script type="text/javascript">
