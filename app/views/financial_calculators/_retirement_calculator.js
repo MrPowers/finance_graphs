@@ -1,5 +1,8 @@
 $(function() {
   $('.btn-primary').click(function(){
-    FinancialCalculators.Retirement.prepend_result_div();
+    if(FinancialCalculators.Retirement.validate_results() != "stop") {
+      FinancialCalculators.Retirement.prepend_result_div();
+      $('#calculator_instructions').hide();
+    }
   });
 });
