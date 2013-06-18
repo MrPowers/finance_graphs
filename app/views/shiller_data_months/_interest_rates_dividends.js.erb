@@ -9,5 +9,6 @@ $(function() {
       name : "Dividend Yields",
       data : dividend_yield_data
     }];
-  ShillerDataMonth.create_chart(data_series, "Long Term Interest Rates and Dividend Yields");
+  var settings = { "div_id":"#container", "chart_title":"U.S. Interest Rates and Dividend Yields", "data":data_series };
+  ShillerDataMonth.create_chart(settings);
 });

@@ -13,4 +13,11 @@ class ShillerDataMonthsController < ApplicationController
       format.html
     end
   end
+
+  def sp_index
+    @result = ShillerDataMonth.sp_data
+    respond_to do |format|
+      format.html
+    end
+  end
 end

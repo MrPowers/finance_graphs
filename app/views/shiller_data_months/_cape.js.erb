@@ -3,6 +3,8 @@ $(function() {
   cape_data = [{
     name : "CAPE",
     data : cape_data
-  }]
-  ShillerDataMonth.create_chart(cape_data, "CAPE of S&P 500 Index");
+  }];
+
+  var settings = { "div_id":"#container", "chart_title":"CAPE of the S&P 500 Index", "data":cape_data };
+  ShillerDataMonth.create_chart(settings);
 });

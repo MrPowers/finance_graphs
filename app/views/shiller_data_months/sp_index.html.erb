@@ -1,0 +1,24 @@
+<div id="container" style="height: 500px; min-width: 500px"></div>
+
+<div class="container">
+  <div class="hero-unit">
+    <p>The real S&P 500 index (i.e. adjusted for inflation) has grown exponentially since 1871.  Don't let the scale of the graph fool you, there have been several large drawdowns historically, but the overall trend of the graph is decidedly upwards.</p>
+  </div>
+</div>
+
+<div id="sp_index_log_scale" style="height: 500px; min-width: 500px"></div>
+
+<div class="container">
+  <div class="hero-unit">
+    <p>On a linear scale, the exponential growth of the S&P 500 index is apparent.  Using a logarithmic scale, the S&P 500 index grows linearly because the scale is exponential.  In short, graphs that are linear with a logarithmic scale are exponential on a linear scale.</p>
+  </div>
+</div>
+
+<%= content_tag "div", id: "sp_data", data: {sp_data: @result} do %>
+<% end %>
+
+<% content_for :head do %>
+  <script type="text/javascript">
+    <%= render partial: "shiller_data_months/sp_index.js" %>
+  </script>
+<% end %>

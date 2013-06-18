@@ -1,6 +1,7 @@
 var ShillerDataMonth = {
-  create_chart : function(data, title) {
-    $('#container').highcharts('StockChart', {
+  //settings = { "div_id":"#container", "chart_title":"S&P 500 Index", "data":[specific_format], 'vertical_scale':'logarithmic[optional]' }
+  create_chart : function(settings) {
+    $(settings['div_id']).highcharts('StockChart', {
       rangeSelector : {
         buttons: [{
           type: 'year',
@@ -13,7 +14,11 @@ var ShillerDataMonth = {
       },
 
       title : {
-        text : title
+        text : settings['chart_title']
+      },
+
+      yAxis : {
+        type: settings['vertical_scale']
       },
 
       xAxis: {
@@ -49,7 +54,7 @@ var ShillerDataMonth = {
         }
       },
 
-      series : data,
+      series : settings['data'],
 
       tooltip: {
         valueDecimals: 2,

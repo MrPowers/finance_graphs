@@ -81,4 +81,12 @@ class ShillerDataMonth < ActiveRecord::Base
     self.dividends / self.sp_index * 100
   end
 
+  def self.sp_data
+    sp_data = []
+    ShillerDataMonth.where("real_sp_index IS NOT NULL").order(:id).each do |sd|
+      sp_data << [sd.formatted_time, sd.real_sp_index.round(2)]
+    end
+    sp_data
+  end
+
 end
