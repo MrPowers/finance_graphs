@@ -21,8 +21,23 @@
         <%= link_to "Finance Graphs", root_url, class: "brand" %>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li><%= link_to "CAPE Graph", cape_data_path %></li>
-            <li><%= link_to "Interest Rates and Dividend Yield", interest_rates_dividends_path %></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Stock Graphs<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "CAPE Graph", cape_data_path %></li>
+                <li><%= link_to "Interest Rates and Dividend Yield", interest_rates_dividends_path %></li>
+                <li><%= link_to "S&P 500 Index", sp_index_path %></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Financial Calculators<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Future Value of Portfolio", future_value_path %></li>
+              </ul>
+            </li>
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
