@@ -4,4 +4,8 @@ class FinancialCalculatorsController < ApplicationController
     ;
   end
 
+  def mortgage_amortization
+    ;
+  end
+
 end

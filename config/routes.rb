@@ -6,4 +6,5 @@ FinanceCharts::Application.routes.draw do
   match 'sp_index' => 'shiller_data_months#sp_index'
 
   match 'future_value' => 'financial_calculators#future_value'
+  match 'mortgage_amortization' => 'financial_calculators#mortgage_amortization'
 end
