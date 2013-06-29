@@ -12,7 +12,7 @@ class FutureValue
     @pv * Math.exp(@i * @n) + (@cf * @savings_rate) * Math.exp(@i * @n) / (@i - @g) * (1 - Math.exp(-(@i - @g) * @n))
 
   draw_results: ->
-    result_html = "<div class='span5 pull-right text-center hero-unit'>
+    result_html = "<div class='span5 text-center hero-unit'>
       <h3>Future Value of Retirement Portfolio:</h3>
       <h2>$#{NumberToString.number_with_commas @fv}</h2>
       <ul class='unstyled'>
@@ -27,10 +27,37 @@ class FutureValue
     </div>"
     $('#result_summary').prepend(result_html)
 
+  investment_growth: ->
+    result = []
+    starting_value = @pv
+    salary = @cf
+    for year in [1..@n]
+      investment_return = starting_value * @i
+      savings = salary * @savings_rate
+      ending_value = starting_value + investment_return + savings
+      result.push({ year: year, starting_value: starting_value, salary: salary, savings: savings, investment_return: investment_return, ending_value: ending_value })
+      salary = salary * (1 + @g)
+      starting_value = ending_value
+    result
+
+  draw_table: ->
+    data = this.investment_growth()
+    for year_data in data
+      row = "<tr>
+      <td>#{NumberToString.number_with_commas year_data.year}</td>
+      <td>#{NumberToString.number_with_commas year_data.starting_value}</td>
+      <td>#{NumberToString.number_with_commas year_data.investment_return}</td>
+      <td>#{NumberToString.number_with_commas year_data.salary}</td>
+      <td>#{NumberToString.number_with_commas year_data.savings}</td>
+      <td>#{NumberToString.number_with_commas year_data.ending_value}</td>
+      </tr>"
+      jQuery('#future_value_table tbody').append(row)
+
 
 $ = jQuery
 
 $ ->
+  $('#future_value_table').hide()
   $('#future_value_button').click ->
     pv = StringToNumber.convert_to_float $("#current_retirement_money").val()
     cf = StringToNumber.convert_to_float $("#current_salary").val()
@@ -40,6 +67,9 @@ $ ->
     n = StringToNumber.convert_to_float $("#time").val()
 
     if InputValidator.validate([pv, cf, g, savings_rate, i, n])
+      $('#future_value_table').fadeIn()
+      $('#future_value_table tbody tr').remove()
       $('#calculator_instructions').hide()
       fv = new FutureValue(pv, cf, g, savings_rate, i, n)
       fv.draw_results()
+      fv.draw_table()

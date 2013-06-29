@@ -1,56 +1,73 @@
-<form class="form-horizontal span5" id="future_value_form">
+<div class="span5">
+  <form class="form-horizontal" id="future_value_form">
 
-  <div class="control-group">
-    <label class="control-label" for="current_retirement_money">Current Retirement Money</label>
-    <div class="controls">
-      <input type="text" id="current_retirement_money" placeholder="90,000">
+    <div class="control-group">
+      <label class="control-label" for="current_retirement_money">Current Retirement Money</label>
+      <div class="controls">
+        <input type="text" id="current_retirement_money" placeholder="90,000">
+      </div>
     </div>
-  </div>
 
-  <div class="control-group">
-    <label class="control-label" for="current_salary">Current Salary</label>
-    <div class="controls">
-      <input type="text" id="current_salary" placeholder="50,000">
+    <div class="control-group">
+      <label class="control-label" for="current_salary">Current Salary</label>
+      <div class="controls">
+        <input type="text" id="current_salary" placeholder="50,000">
+      </div>
     </div>
-  </div>
 
-  <div class="control-group">
-    <label class="control-label" for="annual_salary_increases">Annual Salary Increases</label>
-    <div class="controls">
-      <input type="text" id="annual_salary_increases" placeholder="3.0%">
+    <div class="control-group">
+      <label class="control-label" for="annual_salary_increases">Annual Salary Increases</label>
+      <div class="controls">
+        <input type="text" id="annual_salary_increases" placeholder="3.0%">
+      </div>
     </div>
-  </div>
 
-  <div class="control-group">
-    <label class="control-label" for="percent_of_salary_diverted_to_retirement">Percent of Salary Saved</label>
-    <div class="controls">
-      <input type="text" id="percent_of_salary_diverted_to_retirement" placeholder="10.0%">
+    <div class="control-group">
+      <label class="control-label" for="percent_of_salary_diverted_to_retirement">Percent of Salary Saved</label>
+      <div class="controls">
+        <input type="text" id="percent_of_salary_diverted_to_retirement" placeholder="10.0%">
+      </div>
     </div>
-  </div>
 
-  <div class="control-group">
-    <label class="control-label" for="annual_return">Annual Real Rate of Return for Retirement Investments</label>
-    <div class="controls">
-      <input type="text" id="annual_return" placeholder="5.0%">
+    <div class="control-group">
+      <label class="control-label" for="annual_return">Annual Real Rate of Return for Retirement Investments</label>
+      <div class="controls">
+        <input type="text" id="annual_return" placeholder="5.0%">
+      </div>
     </div>
-  </div>
 
-  <div class="control-group">
-    <label class="control-label" for="time">Number of Years Until Retirement</label>
-    <div class="controls">
-      <input type="text" id="time" placeholder="30">
+    <div class="control-group">
+      <label class="control-label" for="time">Number of Years Until Retirement</label>
+      <div class="controls">
+        <input type="text" id="time" placeholder="30">
+      </div>
     </div>
-  </div>
 
-  <div class="control-group">
-    <div class="controls">
-      <button type="button" class="btn btn-primary" id="future_value_button">Calculate Future Value of Portfolio</button>
+    <div class="control-group">
+      <div class="controls">
+        <button type="button" class="btn btn-primary" id="future_value_button">Calculate Future Value of Portfolio</button>
+      </div>
     </div>
-  </div>
 
-</form>
+  </form>
 
-<div class="span5 pull-right text-center hero-unit" id="calculator_instructions">
+  <table class="table table-hover table-striped" id="future_value_table">
+    <thead>
+      <tr>
+        <td>Year</td>
+        <td>Starting Value</td>
+        <td>Investment Return</td>
+        <td>Salary</td>
+        <td>Savings</td>
+        <td>Ending Value</td>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+
+<div class="span5 text-center hero-unit" id="calculator_instructions">
   <p><span class='label label-important'>Attention:</span></p>
   <h3>Fill in fields on the left to calculate the future value of a retirement portfolio</h3>
 </div>

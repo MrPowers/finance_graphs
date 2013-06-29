@@ -46,15 +46,15 @@ class MortgageCalculator
 $ = jQuery
 
 $ ->
-  $('table').hide()
+  $('#mortgage_table').hide()
   $("#mortgage_button").click ->
     term = StringToNumber.convert_to_float $("#term").val()
     rate = StringToNumber.convert_to_percent $("#rate").val()
     loan = StringToNumber.convert_to_float $("#loan").val()
 
     if InputValidator.validate([term, rate, loan])
-      $('table').fadeIn()
-      $('tbody tr').remove()
+      $('#mortgage_table table').fadeIn()
+      $('#mortgage_table tbody tr').remove()
       mc = new MortgageCalculator(loan, rate, term)
       mc.draw_table()
       mc.draw_summary()
