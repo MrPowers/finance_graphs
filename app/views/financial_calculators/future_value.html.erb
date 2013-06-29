@@ -44,7 +44,7 @@
 
   <div class="control-group">
     <div class="controls">
-      <button type="button" class="btn btn-primary">Calculate Future Value of Portfolio</button>
+      <button type="button" class="btn btn-primary" id="future_value_button">Calculate Future Value of Portfolio</button>
     </div>
   </div>
 
@@ -57,9 +57,3 @@
 
 <div id="result_summary">
 </div>
-
-<% content_for :head do %>
-  <script type="text/javascript">
-    <%= render partial: "financial_calculators/retirement_calculator.js" %>
-  </script>
-<% end %>

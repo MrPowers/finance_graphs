@@ -43,51 +43,18 @@ class MortgageCalculator
     $('#mortgage_calculator_summary').append(result)
 
 
-
-class NumberToString
-  this.number_with_commas = (number) ->
-    Math.round(number).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-
-  this.decimal_number_to_percent_string = (x) ->
-    result = parseFloat(x * 100).toFixed(1)
-    return(result + "%")
-
-
-class StringToNumber
-  this.convert_to_float = (string) ->
-    string = string.replace( /[,$ ]/g, "" )
-    parseFloat(string)
-
-  this.convert_to_percent = (string) ->
-    string = string.replace( /[,%]/g, "" )
-    number = parseFloat(string)
-    if number > 1
-      number = number / 100
-    number
-
-
-class InputValidator
-  this.validate = (inputs) ->
-    for input in inputs
-      if isNaN(input)
-        alert("All fields must be filled in to calculated the mortgage amortization schedule")
-        return
-
-
 $ = jQuery
 
 $ ->
   $('table').hide()
   $("#mortgage_button").click ->
-    $('table').fadeIn()
-    $('tbody tr').remove()
-
     term = StringToNumber.convert_to_float $("#term").val()
     rate = StringToNumber.convert_to_percent $("#rate").val()
     loan = StringToNumber.convert_to_float $("#loan").val()
 
-    InputValidator.validate([term, rate, loan])
-
-    mc = new MortgageCalculator(loan, rate, term)
-    mc.draw_table()
-    mc.draw_summary()
+    if InputValidator.validate([term, rate, loan])
+      $('table').fadeIn()
+      $('tbody tr').remove()
+      mc = new MortgageCalculator(loan, rate, term)
+      mc.draw_table()
+      mc.draw_summary()
