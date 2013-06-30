@@ -31,4 +31,38 @@ namespace :populate_fields do
       sd.update_attribute(:cape, sd.calc_cape)
     end
   end
+
+  desc "Populates the real_sp_index_return"
+  task real_sp_index_return: :environment do
+    shiller_data_months = ShillerDataMonth.where("real_sp_index IS NOT NULL")
+    shiller_data_months.each do |sd|
+      sd.update_attribute(:real_sp_index_return, sd.real_sp_index_return)
+    end
+  end
+
+  desc "Populates the dividend_return"
+  task dividend_return: :environment do
+    shiller_data_months = ShillerDataMonth.where("dividends IS NOT NULL")
+    shiller_data_months.each do |sd|
+      sd.update_attribute(:dividend_return, sd.dividend_return)
+    end
+  end
+
+  desc "Populates the real_total_return"
+  task real_total_return: :environment do
+    shiller_data_months = ShillerDataMonth.where("dividend_return IS NOT NULL AND real_sp_index_return IS NOT NULL")
+    shiller_data_months.each do |sd|
+      sd.update_attribute(:real_total_return, sd.real_total_return)
+    end
+  end
+
+  desc "Add trailing 0 to November year_month - change 2011.1 to 2011.10"
+  task add_trailing_zero: :environment do
+    shiller_data_months = ShillerDataMonth.all.select { |sd| sd.year_month.length == 6 }
+    shiller_data_months.each do |sd|
+      sd.year_month = sd.year_month + "0"
+      sd.save!
+    end
+  end
+
 end

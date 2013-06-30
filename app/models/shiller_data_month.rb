@@ -1,5 +1,5 @@
 class ShillerDataMonth < ActiveRecord::Base
-  attr_accessible :cape, :cpi, :date_fraction, :dividends, :earnings, :long_interest_rate, :real_dividends, :real_earnings, :real_price, :sp_index, :year_month
+  attr_accessible :cape, :cpi, :date_fraction, :dividends, :earnings, :long_interest_rate, :real_dividends, :real_earnings, :sp_index, :year_month, :real_sp_index_return, :dividend_return, :real_total_return
 
   def calc_real_sp_index
     self.inflation_adjustment(sp_index)
@@ -87,6 +87,35 @@ class ShillerDataMonth < ActiveRecord::Base
       sp_data << [sd.formatted_time, sd.real_sp_index.round(2)]
     end
     sp_data
+  end
+
+  def convert_year_month_to_date
+    year, month = self.year_month.split(".")
+    Date.new(year.to_i, month.to_i)
+  end
+
+  def convert_date_to_year_month(date)
+    "#{date.year}.#{sprintf('%02d', date.month)}"
+  end
+
+  def prior_shiller_data_month
+    date = self.convert_year_month_to_date
+    return nil if date <= Date.new(1871, 1)
+    prior_date = date - 1.month
+    ShillerDataMonth.find_by_year_month(self.convert_date_to_year_month(prior_date))
+  end
+
+  def real_sp_index_return
+    return nil if self.prior_shiller_data_month.nil?
+    self.real_sp_index / self.prior_shiller_data_month.real_sp_index - 1
+  end
+
+  def dividend_return
+   self.dividends / 12 / self.sp_index
+  end
+
+  def real_total_return
+    self.real_sp_index_return + self.dividend_return
   end
 
 end

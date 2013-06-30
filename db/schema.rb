@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525044420) do
+ActiveRecord::Schema.define(:version => 20130630215858) do
 
   create_table "shiller_data_months", :force => true do |t|
     t.string   "year_month"
@@ -25,8 +25,11 @@ ActiveRecord::Schema.define(:version => 20130525044420) do
     t.float    "real_dividends"
     t.float    "real_earnings"
     t.float    "cape"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.float    "real_sp_index_return"
+    t.float    "dividend_return"
+    t.float    "real_total_return"
   end
 
 end
