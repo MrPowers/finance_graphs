@@ -53,7 +53,7 @@ $ ->
     loan = StringToNumber.convert_to_float $("#loan").val()
 
     if InputValidator.validate([term, rate, loan])
-      $('#mortgage_table table').fadeIn()
+      $('#mortgage_table').fadeIn()
       $('#mortgage_table tbody tr').remove()
       mc = new MortgageCalculator(loan, rate, term)
       mc.draw_table()

@@ -1,4 +1,5 @@
-<div id="container" style="height: 500px; min-width: 500px"></div>
+<div id="sp_index_page"></div>
+<div id="sp_chart" style="height: 500px; min-width: 500px"></div>
 
 <div class="container">
   <div class="hero-unit">
@@ -15,10 +16,4 @@
 </div>
 
 <%= content_tag "div", id: "sp_data", data: {sp_data: @result} do %>
-<% end %>
-
-<% content_for :head do %>
-  <script type="text/javascript">
-    <%= render partial: "shiller_data_months/sp_index.js" %>
-  </script>
 <% end %>

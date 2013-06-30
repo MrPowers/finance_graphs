@@ -1,4 +1,5 @@
-<div id="container" style="height: 500px; min-width: 500px"></div>
+<div id="dividend_yield_interest_page"></div>
+<div id="dividend_yield_interest_chart" style="height: 500px; min-width: 500px"></div>
 
 <div class="container">
   <div class="hero-unit">
@@ -10,10 +11,4 @@
 <% end %>
 
 <%= content_tag "div", id: "interest_rates_data", data: {interest_rates_data: @interest_rates_data} do %>
-<% end %>
-
-<% content_for :head do %>
-  <script type="text/javascript">
-    <%= render partial: "shiller_data_months/interest_rates_dividends.js" %>
-  </script>
 <% end %>
