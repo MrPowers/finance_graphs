@@ -16,7 +16,7 @@ $ ->
         data: $('#cape_data').data('result')
       }]
       settings = { "div_id":"#cape_chart", "chart_title":"CAPE of the S&P 500 Index", "data":data }
-      ShillerDataMonth.create_chart(settings)
+      HighStockLineGraph.create_chart(settings)
 
     when "dividend_yield_interest_page"
       interest_rates_data = $('#interest_rates_data').data('interest-rates-data')
@@ -30,7 +30,7 @@ $ ->
           data : dividend_yield_data
         }]
       settings = { "div_id":"#dividend_yield_interest_chart", "chart_title":"U.S. Interest Rates and Dividend Yields", "data":data }
-      ShillerDataMonth.create_chart(settings)
+      HighStockLineGraph.create_chart(settings)
 
     when "sp_index_page"
       sp_data = $('#sp_data').data('sp-data')
@@ -40,7 +40,7 @@ $ ->
       }]
 
       linear_settings = { "div_id":"#sp_chart", "chart_title":"Real S&P 500 Index", "data":sp_data }
-      ShillerDataMonth.create_chart(linear_settings)
+      HighStockLineGraph.create_chart(linear_settings)
 
       log_settings = { "div_id":"#sp_index_log_scale", "chart_title":"Real S&P 500 Index Log Scale", "data":sp_data, 'vertical_scale':'logarithmic' }
-      ShillerDataMonth.create_chart(log_settings)
+      HighStockLineGraph.create_chart(log_settings)
