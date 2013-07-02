@@ -20,4 +20,21 @@ class ShillerDataMonthsController < ApplicationController
       format.html
     end
   end
+
+  def historic_returns
+    start_date = Date.new(params[:start_year].to_i, params[:start_month].to_i)
+    end_date = Date.new(params[:end_year].to_i, params[:end_month].to_i)
+
+    @result = ShillerDataMonth.records_between_two_dates(start_date, end_date)
+
+    respond_to do |format|
+      format.json { render :json => @result }
+    end
+  end
+
+  def returns_calculator
+    
+  end
 end
+
+#curl -H 'Content-type: application/json' -H 'Accept: application/json' -d '{"start_year":"2008","start_month":"1","end_year":"2008","end_month":"12"}' 'http://localhost:3000/historic_returns.json'

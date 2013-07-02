@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130630215858) do
+ActiveRecord::Schema.define(:version => 20130701231157) do
 
   create_table "shiller_data_months", :force => true do |t|
     t.string   "year_month"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20130630215858) do
     t.float    "earnings"
     t.float    "cpi"
     t.float    "long_interest_rate"
-    t.date     "date_fraction"
+    t.date     "record_date"
     t.float    "real_sp_index"
     t.float    "real_dividends"
     t.float    "real_earnings"

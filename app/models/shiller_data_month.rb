@@ -118,4 +118,8 @@ class ShillerDataMonth < ActiveRecord::Base
     self.real_sp_index_return + self.dividend_return
   end
 
+  def self.records_between_two_dates(start_date, end_date)
+    ShillerDataMonth.where("record_date >= ? AND record_date <= ?", start_date, end_date).order("record_date asc")
+  end
+
 end

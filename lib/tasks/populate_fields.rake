@@ -65,4 +65,13 @@ namespace :populate_fields do
     end
   end
 
+  desc "Populate record_date"
+  task record_date: :environment do
+    shiller_data_months = ShillerDataMonth.where("year_month IS NOT NULL")
+    shiller_data_months.each do |sd|
+      year, month = sd.year_month.split(".")
+      sd.update_attribute(:record_date, Date.new(year.to_i, month.to_i))
+    end
+  end
+
 end
