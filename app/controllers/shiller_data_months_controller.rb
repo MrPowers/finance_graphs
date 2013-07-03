@@ -31,10 +31,6 @@ class ShillerDataMonthsController < ApplicationController
       format.json { render :json => @result }
     end
   end
-
-  def returns_calculator
-    
-  end
 end
 
 #curl -H 'Content-type: application/json' -H 'Accept: application/json' -d '{"start_year":"2008","start_month":"1","end_year":"2008","end_month":"12"}' 'http://localhost:3000/historic_returns.json'

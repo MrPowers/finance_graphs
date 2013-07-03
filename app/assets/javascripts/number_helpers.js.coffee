@@ -6,6 +6,9 @@ class window.NumberToString
     result = parseFloat(x * 100).toFixed(1)
     return(result + "%")
 
+  this.round_float = (number, num_digits) ->
+    (number).toFixed(num_digits)
+
 
 class window.StringToNumber
   this.convert_to_float = (string) ->

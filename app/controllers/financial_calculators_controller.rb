@@ -8,4 +8,8 @@ class FinancialCalculatorsController < ApplicationController
     ;
   end
 
+  def returns_calculator
+    ;
+  end
+
 end
