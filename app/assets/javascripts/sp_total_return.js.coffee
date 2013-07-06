@@ -21,16 +21,35 @@ class TotalReturn
   total_months: ->
     @data_months.length
 
-  draw_table: ->
+  #draw_table: ->
+    #balance = 1
+    #for data_month in @data_months
+      #balance = balance *= (1 + data_month.real_total_return)
+      #row = "<tr>
+      #<td>#{DateHelpers.formatted_date data_month.record_date}</td>
+      #<td>#{NumberToString.percent_formatting data_month.real_total_return}</td>
+      #<td>#{NumberToString.round_float(balance, 2)}</td>
+      #</tr>"
+      #jQuery('table tbody').append(row)
+
+  data_highstock: ->
+    result = []
     balance = 1
     for data_month in @data_months
       balance = balance *= (1 + data_month.real_total_return)
-      row = "<tr>
-      <td>#{DateHelpers.formatted_date data_month.record_date}</td>
-      <td>#{NumberToString.percent_formatting data_month.real_total_return}</td>
-      <td>#{NumberToString.round_float(balance, 2)}</td>
-      </tr>"
-      jQuery('table tbody').append(row)
+      result.push([DateHelpers.record_date_to_milliseconds(data_month.record_date), balance])
+    [{
+      name : "Total Return"
+      data : result
+    }]
+
+  draw_results: ->
+    result_html = "<div class='span5 text-center hero-unit'>
+      <h3>Total return over selected time period</h3>
+      <h3>CAGR: #{this.cagr()}</h3>
+    </div>"
+    $('#result_summary').prepend(result_html)
+
 
 
 class DateHelpers
@@ -58,6 +77,11 @@ class DateHelpers
     month_index = parseInt(month) - 1
     "#{month_names[month_index]} #{year}"
 
+  # input date is in "YYYY-MM-DD format"
+  this.record_date_to_milliseconds = (string) ->
+    new Date(string).getTime()
+
+
 
 $ = jQuery
 
@@ -80,11 +104,16 @@ $ ->
       dataType: "json"
       success: (data) ->
         tr = new TotalReturn(data)
-        tr.draw_table()
-        console.log "CAGR: #{tr.cagr()}"
-        console.log "Total Return: #{tr.total_return()}"
-        console.log "Total Months: #{tr.total_months()}"
-        #alert tr.cagr()
-        console.log data
+        $('#calculator_instructions').hide()
+        tr.draw_results()
+        data_highstock = tr.data_highstock()
+        settings = { "div_id":"#historic_returns_chart", "chart_title":"Total Return Over Time Interval", "data":data_highstock }
+        HighStockLineGraph.create_chart(settings)
+        #console.log "CAGR: #{tr.cagr()}"
+        #console.log "Total Return: #{tr.total_return()}"
+        #console.log "Total Months: #{tr.total_months()}"
+        ##alert tr.cagr()
+        #console.log data
+        #console.log data_array
       error: ->
         alert("failure")
