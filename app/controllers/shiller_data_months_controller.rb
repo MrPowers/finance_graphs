@@ -22,13 +22,13 @@ class ShillerDataMonthsController < ApplicationController
   end
 
   def historic_returns
-    start_date = Date.new(params[:start_year].to_i, params[:start_month].to_i)
-    end_date = Date.new(params[:end_year].to_i, params[:end_month].to_i)
-
-    @result = ShillerDataMonth.records_between_two_dates(start_date, end_date)
-
     respond_to do |format|
-      format.json { render :json => @result }
+      format.json do
+        start_date = Date.new(params[:start_year].to_i, params[:start_month].to_i)
+        end_date = Date.new(params[:end_year].to_i, params[:end_month].to_i)
+        @result = ShillerDataMonth.records_between_two_dates(start_date, end_date)
+        render :json => @result
+      end
     end
   end
 end

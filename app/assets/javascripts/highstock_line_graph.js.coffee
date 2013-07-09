@@ -3,8 +3,16 @@ window.HighStockLineGraph = create_chart: (settings) ->
     rangeSelector:
       buttons: [
         type: "year"
-        count: 1
-        text: "1y"
+        count: 10
+        text: "10y"
+      ,
+        type: "year"
+        count: 20
+        text: "20y"
+      ,
+        type: "year"
+        count: 30
+        text: "30y"
       ,
         type: "all"
         text: "All"
@@ -45,4 +53,3 @@ window.HighStockLineGraph = create_chart: (settings) ->
 
     tooltip:
       valueDecimals: 2
-
