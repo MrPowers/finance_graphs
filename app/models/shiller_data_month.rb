@@ -122,4 +122,12 @@ class ShillerDataMonth < ActiveRecord::Base
     ShillerDataMonth.where("record_date >= ? AND record_date <= ?", start_date, end_date).order("record_date asc")
   end
 
+  def self.json_formatting(collection)
+    result = []
+    collection.each do |shiller_data_month|
+      result << shiller_data_month.attributes
+    end
+    result
+  end
+
 end

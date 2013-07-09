@@ -27,7 +27,7 @@ class ShillerDataMonthsController < ApplicationController
         start_date = Date.new(params[:start_year].to_i, params[:start_month].to_i)
         end_date = Date.new(params[:end_year].to_i, params[:end_month].to_i)
         @result = ShillerDataMonth.records_between_two_dates(start_date, end_date)
-        render :json => @result
+        render :json => ShillerDataMonth.json_formatting(@result)
       end
     end
   end
