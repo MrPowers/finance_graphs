@@ -8,6 +8,6 @@ describe EquityIndexDataPoint do
   end
 
   it "calculates the dividend yield" do
-    expect(data_point.dividend_yield).to be_within(0.0001).of(0.0543)
+    expect(data_point.dividend_yield).to be_within(0.01).of(5.43)
   end
 end

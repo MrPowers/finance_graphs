@@ -8,7 +8,7 @@ class EquityIndexDataPoint
   end
 
   def price_to_earnings
-    price / earnings * 100
+    price / earnings
   end
 
   def dividend_yield

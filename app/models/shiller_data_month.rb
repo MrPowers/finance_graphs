@@ -4,7 +4,7 @@ class ShillerDataMonth < ActiveRecord::Base
   def self.cape_data_array
     result = []
     ShillerDataMonth.where("cape IS NOT NULL").order("record_date asc").each do |sd|
-      result << [sd.formatted_time, sd.cape.round(2)]
+      result << [YearMonth.new(sd.year_month).to_milliseconds, sd.cape.round(2)]
     end
     result
   end
@@ -12,7 +12,7 @@ class ShillerDataMonth < ActiveRecord::Base
   def self.interest_rates_data_array
     interest_rates_data = []
     ShillerDataMonth.where("long_interest_rate IS NOT NULL").order(:id).each do |sd|
-      interest_rates_data << [sd.formatted_time, sd.long_interest_rate.round(2)]
+      interest_rates_data << [YearMonth.new(sd.year_month).to_milliseconds, sd.long_interest_rate.round(2)]
     end
     interest_rates_data
   end
@@ -20,7 +20,8 @@ class ShillerDataMonth < ActiveRecord::Base
   def self.dividend_yield_data_array
     dividend_yield_data = []
     ShillerDataMonth.where("dividends IS NOT NULL AND sp_index IS NOT NULL").order(:id).each do |sd|
-      dividend_yield_data << [sd.formatted_time, sd.equity_index_data_point.dividend_yield.round(2)]
+      equity_index_data_point = EquityIndexDataPoint.new(price: sd.sp_index, earnings: sd.earnings, dividends: sd.dividends)
+      dividend_yield_data << [YearMonth.new(sd.year_month).to_milliseconds, equity_index_data_point.dividend_yield.round(2)]
     end
     dividend_yield_data
   end
@@ -28,7 +29,7 @@ class ShillerDataMonth < ActiveRecord::Base
   def self.sp_data
     sp_data = []
     ShillerDataMonth.where("real_sp_index IS NOT NULL").order(:id).each do |sd|
-      sp_data << [sd.formatted_time, sd.real_sp_index.round(2)]
+      sp_data << [YearMonth.new(sd.year_month).to_milliseconds, sd.real_sp_index.round(2)]
     end
     sp_data
   end
@@ -57,31 +58,7 @@ class ShillerDataMonth < ActiveRecord::Base
     ShillerDataMonth.where("record_date >= ? AND record_date <= ?", start_date, end_date).order("record_date asc")
   end
 
-  def calc_real_sp_index
-    self.inflation_adjustment(sp_index)
-  end
-
-  def calc_real_earnings
-    self.inflation_adjustment(earnings)
-  end
-
-  def calc_real_dividends
-    self.inflation_adjustment(dividends)
-  end
-
-  def self.records_between_two_dates(start_date, end_date)
-    ShillerDataMonth.where("record_date >= ? AND record_date <= ?", start_date, end_date).order("record_date asc")
-  end
-
   private
-
-  def equity_index_data_point
-    EquityIndexDataPoint.new(price: sp_index, earnings: earnings, dividends: dividends)
-  end
-
-  def formatted_time
-    YearMonth.new(year_month).to_milliseconds
-  end
 
   def last_record
     ShillerDataMonth.order("record_date desc").limit(1)
